@@ -181,3 +181,29 @@ uv sync
 - プロジェクトに仮想環境がない場合は、自動的に新しい仮想環境を作成する
 - 依存関係の解決が行われ、その結果を`uv.lock`に保存する
 
+uvでは自動的に仮想環境を管理しているため、従来の`venv`などで必要であったアクティベートなどが不要。
+
+## uvとその他のソフトウェアの統合
+- [Integration guides](https://docs.astral.sh/uv/guides/integration/)
+    - 日本語は[こちら](https://mtkn1.github.io/uv/guides/integration/)
+### Jupyterとの統合
+#### VS CodeからJupyterを使用する
+
+まずプロジェクトを作成する。
+```
+uv init project
+cd project
+```
+プロジェクトディレクトリに移動したら、`ipykernel`を開発依存関係として追加する
+```
+uv add --dev ipykernel
+```
+その後、プロジェクトをVS Codeで開く。
+```
+code .
+```
+Jupyter Notebookを作成する。おそらく、カーネルを選択するように求められるので作成した`.venv/bin/python`を選択する。これでJupyter Notebookが使用できる。
+
+その他の場合は、[こちら](https://mtkn1.github.io/uv/guides/integration/jupyter/)を参考にするといい。
+
+### Dockerイメージとの統合
